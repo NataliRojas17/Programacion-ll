@@ -1,5 +1,5 @@
 public class FigurasGeometricas {
-    public static double area(double radio) { // Círculo
+    double area(double radio) { // Círculo
         return Math.PI * radio * radio;
     }
 
@@ -29,8 +29,8 @@ public class FigurasGeometricas {
 
         System.out.println("Círculo: " + f1.area(3.0)); 
         System.out.println("Rectángulo: " + f2.area(4.0, 6.0)); 
-        System.out.println("Triángulo Rectángulo: " + f3.area(5.0,8)); 
-        System.out.println("Trapecio: " + f4.area(6.0, 4.0, 5.0));
-        System.out.println("Pentágono: " + f5.area(7, 3.0)); 
+        System.out.println("Triángulo Rectángulo: " + f3.area(5.0,9)); 
+        System.out.println("Trapecio: " + f4.area(8.0, 3.0, 5.0));
+        System.out.println("Pentágono: " + f5.area(9, 4.5)); 
     }
 }
