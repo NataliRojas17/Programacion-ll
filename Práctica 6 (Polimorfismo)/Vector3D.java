@@ -1,59 +1,36 @@
 public class Vector3D {
-    private double x, y, z;
-    public Vector3D(double x, double y, double z) {
+    private double x, y;
+
+    public Vector3D(double x, double y) {
         this.x = x;
         this.y = y;
-        this.z = z;
     }
-    public Vector3D sumar(Vector3D o) {
-        return new Vector3D(this.x + o.x, this.y + o.y, this.z + o.z);
-    }
-    public Vector3D multiplicar(double escalar) {
-        return new Vector3D(this.x * escalar, this.y * escalar, this.z * escalar);
-    }
-    public double magnitud() {
-        return Math.sqrt(x * x + y * y + z * z);
-    }
+
     public double productoEscalar(Vector3D o) {
-        return this.x * o.x + this.y * o.y + this.z * o.z;
+        return this.x * o.x + this.y * o.y;
     }
-    public Vector3D productoVectorial(Vector3D o) {
-        return new Vector3D(
-            this.y * o.z - this.z * o.y,
-            this.z * o.x - this.x * o.z,
-            this.x * o.y - this.y * o.x
-        );
+
+    public double productoCruzado(Vector3D o) {
+        return this.x * o.y - this.y * o.x;
     }
+
+    public Vector3D proyeccionSobre(Vector3D b) {
+        double escalar = this.productoEscalar(b) / b.productoEscalar(b);
+        return new Vector3D(b.x * escalar, b.y * escalar);
+    }
+
     public void imprimir() {
-        System.out.print("(");
-        imprimirValor(x);
-        System.out.print(", ");
-        imprimirValor(y);
-        System.out.print(", ");
-        imprimirValor(z);
-        System.out.println(")");
+        System.out.print("(" + (int)x + "," + (int)y + ")");
     }
-    private void imprimirValor(double valor) {
-        if (valor == (int) valor) {
-            System.out.print((int) valor);  
-        } else {
-            System.out.print(valor);  
-        }
-    }
+
     public static void main(String[] args) {
-        Vector3D v1 = new Vector3D(8, 3, 11);
-        Vector3D v2 = new Vector3D(4, 9, 3);
+        Vector3D a = new Vector3D(2, 5);
+        Vector3D b = new Vector3D(4, 10);
 
-        System.out.print("Suma: ");
-        v1.sumar(v2).imprimir();
-
-        System.out.print("Multiplicacion por escalar: ");
-        v1.multiplicar(2).imprimir();
-
-        System.out.println("Magnitud de v1: " + v1.magnitud());
-        System.out.println("Producto escalar: " + v1.productoEscalar(v2));
-
-        System.out.print("Producto vectorial: ");
-        v1.productoVectorial(v2).imprimir();
+        System.out.println("Producto escalar = " + a.productoEscalar(b));
+        System.out.println("Producto cruzado = " + a.productoCruzado(b));
+        System.out.print("Proyección de a sobre b: ");
+        a.proyeccionSobre(b).imprimir();
+        System.out.println();
     }
 }
